@@ -1,0 +1,28 @@
+/*************
+app container
+*************/
+.app-container{
+background-color: rgb(87, 45, 155);
+margin: 15px 0 20px 0;
+border-radius: 15px;
+width: 100%;
+height: 95vh;
+border:7px solid  rgb(170, 164, 164);
+}
+
+/******
+footer
+******/
+#footer{
+  border-radius: 0 0 8px 8px;
+  background-color: rgb(136, 127, 157);
+  height: 3%;
+  text-align: center;
+}
+
+.mainNavbar{
+  background-color: rgb(63, 59, 71);
+  border-radius: 8px 8px 0 0;
+  height: 8%;
+  margin: 0;
+}

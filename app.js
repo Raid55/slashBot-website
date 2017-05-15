@@ -1,3 +1,4 @@
+const cors = require('cors');
 const path = require('path');
 const axios = require('axios');
 const express = require('express');
@@ -12,10 +13,12 @@ const OAuth2Strategy = require('passport-oauth2').Strategy;
 const { mongoUrl, clientId, clientSecret, sessionSecret } = require('./config');
 const userSchema = require('./models/user.js');
 
-
-
 //express app
 const app = express();
+
+
+//for dev
+app.use(cors())
 
 //mongoose connection
 const connection = mongoose.createConnection(mongoUrl)
@@ -23,7 +26,7 @@ const User = connection.model('User', userSchema)
 
 
 // Serve static assets
-app.use(express.static(path.resolve(__dirname, 'public')));
+app.use('/files',express.static('public'));
 //body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,6 +40,8 @@ app.use(session({
 //passport init and session
 app.use(passport.initialize());
 app.use(passport.session());
+//View Engine...aka PUG
+app.set('view engine', 'pug')
 
 //pasport oauth2 strategy
 passport.use(new OAuth2Strategy({
@@ -92,9 +97,7 @@ function isAuthenticated(req,res,next){
    if(req.user)
       next();
    else
-      res.status(401).json({
-        error: 'User not authenticated'
-      })
+      res.redirect('/')
 
 }
 
@@ -125,13 +128,21 @@ function latestServers(req, res, next){
 
 // passport.authenticate('oauth2',{scope: ["identify", "guilds"]})
 app.get("/", (req, res) => {
-  res.json(req.user)
+  if(req.user){
+    res.render('dashboard/noServDash.pug', { userObj: req.user[0]})
+  }else{
+    res.render('dashboard/noServDash.pug')
+  }
 })
 
 app.get("/login", passport.authenticate('oauth2',{scope: ["identify", "guilds"]}))
 
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
+
 app.get("/confirm_login", passport.authenticate('oauth2', { failureRedirect: '/' }), (req,res) => {
-  console.log(req.user);
   res.redirect("/dashboard")
 })
 
@@ -139,9 +150,8 @@ app.get("/dashboard", isAuthenticated, latestServers, (req, res) => {
   res.json(req.user[0])
 })
 
-app.get("/test1", (req, res) => {
-  console.log(req.user);
-  res.json(req.user)
+app.get("/test1", isAuthenticated, (req, res) => {
+  res.render('dashboard/noServDash.pug', { userObj: req.user[0]})
 })
 
 app.get("/test2", (req, res) => {
