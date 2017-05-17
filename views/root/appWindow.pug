@@ -6,38 +6,40 @@ block head
       .row
         .col-lg-1
         .col-lg-10
-          .app-container
-            block navbar
-              
-            nav.navbar.navbar-inverse.mainNavbar
-              .container-fluid
-                .navbar-header
-                  h2 slashBot
-                .navbar-collapse.collapse
-                  ul.nav.navbar-nav
-                    li
-                     a(href="/about") About
-                    li
-                      a(href="/donate") Donate
-                    li
-                      a(href="/support") Support
-                    li 
-                      a(href="/ideas") Ideas
-                  ul.nav.navbar-nav.navbar-right
-                    if user
-                      li.dropdown
-                        a.dropdown-toggle(href="#" data-toggle="dropdown" role="button")
-                          img(src="http://placehold.it/15x15") 
-                          span #{user.username}
-                          span.caret
-                        ul.dropdown-menu(role='menu')
-                          li
-                            a(href="/dashboard") Dashboard
-                          li
-                            a(href="/logout") Logout
-                    else
+          .main-container
+            .app-container
+              block navbar
+                
+              nav.navbar.navbar-inverse.mainNavbar
+                .container-fluid
+                  .navbar-header
+                    slashBot
+                  .navbar-collapse.collapse
+                    ul.nav.navbar-nav
                       li
-                        a(href="/login") Login With Discord
-            block app
-            include footer.pug
+                       a(href="/about") About
+                      li
+                        a(href="/donate") Donate
+                      li
+                        a(href="/support") Support
+                      li 
+                        a(href="/ideas") Ideas
+                    ul.nav.navbar-nav.navbar-right
+                      if user
+                        li.dropdown
+                          a.dropdown-toggle.avatarImg(href="#" data-toggle="dropdown" role="button" style="padding: 11.5px 0 0 0;")
+                            img.img-rounded(src="http://placehold.it/125x125") 
+                            span #{user.username}
+                            span.caret
+                          ul.dropdown-menu(role='menu')
+                            li
+                              a(href="/dashboard") Dashboard
+                            li
+                              a(href="/logout") Logout
+                      else
+                        li
+                          a(href="/login") Login With Discord
+              block app
+              include footer.pug
         .col-lg-1
+  include scripts.pug

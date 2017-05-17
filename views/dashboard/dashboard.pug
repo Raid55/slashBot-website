@@ -1,0 +1,42 @@
+extends ../root/appWindow.pug
+
+block navbar
+  - var user = userObj
+block app
+  .dashboard-container
+    .jumbotron.jumba
+      if selectedServ
+        img.img-responsive.img-rounded.serverImage(src=selectedServ.icon alt="whatislife?")
+        .well.serverText #{selectedServ.name}
+      else
+        img.img-responsive.img-rounded.serverImage(src="https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png" alt="whatislife?")
+        .well.serverText Please select a Server
+    .toolbar
+      .serverSelec
+        select.form-control.selectForm
+          if servers
+            option.disabled Choose a Server
+            each server in servers
+              option(value=server.id) #{server.name}
+          else
+            option.disabled You have no Servers
+        button.btn.btn-warning.btn-xs
+          span.glyphicon.glyphicon-refresh
+      if selectedServ
+        if selectedServ.isOn
+          span.label.label-success.statusTag Online
+        else
+          span.label.label-danger.statusTag Offline
+      else
+        span.label.label-info.statusTag No Server Selected
+      .btn-group.buttonsGroup(role="group")
+        if selectedServer
+          if selectedServ.isOn  
+            button.btn.btn-success.btn-xs.disabled Turn On
+            button.btn.btn-warning.btn-xs Turn Off
+          else 
+            button.btn.btn-success.btn-xs Turn On
+            button.btn.btn-warning.btn-xs.disabled  Turn Off
+        else
+          button.btn.btn-success.btn-xs.disabled Turn On
+          button.btn.btn-warning.btn-xs.disabled Turn Off

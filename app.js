@@ -60,7 +60,7 @@ passport.use(new OAuth2Strategy({
     .then(response => {
       User.findOrCreate({id: response.data.id}, {
         username: response.data.username,
-        avatar: response.data.avatar,
+        avatar: `https://cdn.discordapp.com/avatars/${response.data.id}/${response.data.avatar}.jpg`,
         discriminator: response.data.discriminator,
         mfa_enabled: response.data.mfa_enabled,
         session:{
@@ -110,7 +110,7 @@ function latestServers(req, res, next){
   .then(response => {
     return response.data.reduce((accu, el, indx) =>{
       if(el.owner){
-        accu.push({id: el.id, icon: el.icon, name: el.name})
+        accu.push({id: el.id, icon:` https://cdn.discordapp.com/icons/${el.id}/${el.icon}.jpg`, name: el.name})
       }
       return accu
     }, [])
@@ -129,9 +129,9 @@ function latestServers(req, res, next){
 // passport.authenticate('oauth2',{scope: ["identify", "guilds"]})
 app.get("/", (req, res) => {
   if(req.user){
-    res.render('dashboard/noServDash.pug', { userObj: req.user[0]})
+    res.render("home/homeLoggedOut.pug", {userObj: req.user[0]})
   }else{
-    res.render('dashboard/noServDash.pug')
+    res.render("home/homeLoggedOut.pug")
   }
 })
 
@@ -147,7 +147,14 @@ app.get("/confirm_login", passport.authenticate('oauth2', { failureRedirect: '/'
 })
 
 app.get("/dashboard", isAuthenticated, latestServers, (req, res) => {
-  res.json(req.user[0])
+  res.render('dashboard/dashboard.pug', { userObj: req.user[0], servers: req.user[0].servers})
+})
+
+app.get("/dashboard/:servId", isAuthenticated, (req, res) => {
+  let serverInfo = true;
+  if(serverInfo){
+    res.render('dashboard/dashboard.pug', { userObj: req.user[0], servers: req.user[0].servers, selectedServ: serverInfo})
+  }
 })
 
 app.get("/test1", isAuthenticated, (req, res) => {
