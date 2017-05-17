@@ -4,24 +4,28 @@ block navbar
   - var user = userObj
 block app
   .dashboard-container
-    .jumbotron.jumba
+    .jumbotron.dashJumba(style="border-radius: 0;")
       if selectedServ
         img.img-responsive.img-rounded.serverImage(src=selectedServ.icon alt="whatislife?")
         .well.serverText #{selectedServ.name}
       else
         img.img-responsive.img-rounded.serverImage(src="https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png" alt="whatislife?")
         .well.serverText Please select a Server
-    .toolbar
+    .dashToolbar
       .serverSelec
         select.form-control.selectForm
           if servers
-            option.disabled Choose a Server
+            option(value="null" disabled selected) Choose a Server
             each server in servers
-              option(value=server.id) #{server.name}
+              if selectedServ
+                if selectedServ.id === server.id
+                  option(selected value=server.id) #{server.name}
+                else
+                  option(value=server.id) #{server.name}
+              else
+                option(value=server.id) #{server.name}
           else
-            option.disabled You have no Servers
-        button.btn.btn-warning.btn-xs
-          span.glyphicon.glyphicon-refresh
+            option(value="null" disabled) You have no Servers
       if selectedServ
         if selectedServ.isOn
           span.label.label-success.statusTag Online
@@ -29,9 +33,9 @@ block app
           span.label.label-danger.statusTag Offline
       else
         span.label.label-info.statusTag No Server Selected
-      .btn-group.buttonsGroup(role="group")
-        if selectedServer
-          if selectedServ.isOn  
+      .btn-group.buttonsOnOff(role="group")
+        if selectedServ
+          if selectedServ.isOn
             button.btn.btn-success.btn-xs.disabled Turn On
             button.btn.btn-warning.btn-xs Turn Off
           else 
@@ -40,3 +44,21 @@ block app
         else
           button.btn.btn-success.btn-xs.disabled Turn On
           button.btn.btn-warning.btn-xs.disabled Turn Off
+    .dashSettings
+      .pillHolder(style="border-radius: 4px;")
+        ul.nav.nav-pills.nav-stacked
+          li.active
+            a(href='#lol' data-toggle="pill") lol
+          li
+            a(href='#test' data-toggle="pill") a piece of toast
+      .contentHolder(style="border-radius: 4px;")
+        .tab-content(style="height: 100%;")
+          #lol.tab-pane.fade.in.active(style="height: 100%;")
+            .tabTitle Music
+            .tabForm form
+            .tabAction
+              .btn-group.buttonsSaveOrNot(role="group")
+                button.btn.btn-warning.btn-xs(style="margin: 4px; border-radius: 3px;") Cancel
+                button.btn.btn-success.btn-xs(style="margin: 4px; border-radius: 3px;") Save Changes
+          #test.tab-pane.fade
+            p Me strawberry snickels

@@ -9,12 +9,8 @@ const serverSchema = new Schema({
   name: String,
   ownerid: String,
   isOn: Boolean,
-  mods:{
-    music: {},
-    rust:{},
-    reddit:{}
-  }
+  mods:{}
 })
 
-userSchema.plugin(findOrCreate);
+serverSchema.plugin(findOrCreate);
 module.exports = serverSchema

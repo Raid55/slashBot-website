@@ -27,8 +27,8 @@ block head
                     ul.nav.navbar-nav.navbar-right
                       if user
                         li.dropdown
-                          a.dropdown-toggle.avatarImg(href="#" data-toggle="dropdown" role="button" style="padding: 11.5px 0 0 0;")
-                            img.img-rounded(src="http://placehold.it/125x125") 
+                          a.dropdown-toggle.avatarImg(href="#" data-toggle="dropdown" role="button" style="padding: 10.5px 0 8px 0;")
+                            img.img-rounded(src=user.avatar) 
                             span #{user.username}
                             span.caret
                           ul.dropdown-menu(role='menu')

@@ -28,7 +28,7 @@ footer
 }
 
 .avatarImg{
-  padding: 12.5px 0 0 0;
+  padding: 19.5px 0 19.5px 0;
 }
 
 .avatarImg > img{
@@ -50,8 +50,19 @@ footer
   border-radius: 0 0 15px 15px;
 }
 
+.dashJumba{
+  background-color: rgb(103, 52, 249);
+  width: 100%;
+  height: 34%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 2.1em 0 2.1em 2.1em;
+}
 
-.toolbar{
+.dashToolbar{
   height: 6%;
   background-color: #2c3e50;
   padding: 3.4px 2.1em 3.4px 2.1em;
@@ -77,27 +88,16 @@ footer
   text-align: center;
   align-self: center;
   padding: .6em .3em .6em .3em;
+  margin-right: 8.4em;
 }
 
-.buttonsGroup > .{
+.buttonsOnOff> .{
   text-align: center;
   align-self: center;
 }
-.buttonsGroup{
+.buttonsOnOff{
   display: flex;
   flex-direction: row;
-}
-
-.jumba{
-  background-color: rgb(103, 52, 249);
-  width: 100%;
-  height: 34%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 2.1em 0 2.1em 2.1em;
 }
 
 .serverImage{
@@ -118,6 +118,67 @@ footer
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.dashSettings{
+  display: flex;
+  height: 60%;
+  padding: 9px 2.1em 9px 2.1em;
+  border-radius: 0;
+}
+
+.pillHolder{
+  border: 3px solid rgba(33, 185, 143, 0.73);
+  background-color: rgba(68, 48, 163, 0.92);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 24.7%;
+}
+
+.pillHolder > ul > li{
+  border-radius: 0 ;
+  margin-top: 0;
+}
+
+.contentHolder{
+  border: 3px solid rgba(33, 185, 143, 0.73);
+  background-color: rgba(68, 48, 163, 0.92);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 74.3%;
+  margin: 0 0 0 2%;
+  border-radius: 0;
+}
+
+.tabTitle{
+  display: flex;
+  justify-content: flex-start;
+  height: 9%;
+  width: auto;
+  border-radius: 4px 4px 0 0;
+  background-color: rgb(77, 66, 89);
+}
+.tabTitle > .{
+
+}
+.tabForm{
+  height: 83%;
+  width: auto;
+  background-color: rgb(155, 151, 159);
+}
+.tabAction{
+  display: flex;
+  justify-content: flex-end;
+  height: 8%;
+  width: auto;
+  border-radius: 0 0 2px 2px;
+  background-color: rgb(182, 182, 182);
+}
+
+.buttonsSaveOrNot> . {
+  text-align: center;
+  align-self: center;
+}
+.buttonsSaveOrNot{
+  display: flex;
+  flex-direction: row;
+}
 
 /*export default {
   container:{

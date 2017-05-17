@@ -5,7 +5,11 @@ $(document).ready(function() {
   //server selector
   $('.selectForm').change(function(){
     let val = $( ".selectForm" ).val();
-    $( location ).attr("href", `/dashboard/${val}`)
+    if(val === "null"){
+      return;
+    }else{
+      $( location ).attr("href", `/dashboard/${val}`)
+    }
   });
 
 })

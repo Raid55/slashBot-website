@@ -12,7 +12,7 @@ const OAuth2Strategy = require('passport-oauth2').Strategy;
 
 const { mongoUrl, clientId, clientSecret, sessionSecret } = require('./config');
 const userSchema = require('./models/user.js');
-
+const serverSchema = require('./models/server.js')
 //express app
 const app = express();
 
@@ -22,8 +22,8 @@ app.use(cors())
 
 //mongoose connection
 const connection = mongoose.createConnection(mongoUrl)
-const User = connection.model('User', userSchema)
-
+const Users = connection.model('User', userSchema)
+const Servers = connection.model('Servers', serverSchema)
 
 // Serve static assets
 app.use('/files',express.static('public'));
@@ -58,7 +58,7 @@ passport.use(new OAuth2Strategy({
       headers: {'Authorization': `Bearer ${accessToken}`},
     })
     .then(response => {
-      User.findOrCreate({id: response.data.id}, {
+      Users.findOrCreate({id: response.data.id}, {
         username: response.data.username,
         avatar: `https://cdn.discordapp.com/avatars/${response.data.id}/${response.data.avatar}.jpg`,
         discriminator: response.data.discriminator,
@@ -68,8 +68,8 @@ passport.use(new OAuth2Strategy({
           refreshToken: refreshToken
         }
       }, (err, user) => {
-          return cb(err, user);
-        });
+        return cb(err, user);
+      });
     })
     .catch(error => {
       console.log(error);
@@ -83,7 +83,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  User.find({id: id}, (err, user) => {
+  Users.find({id: id}, (err, user) => {
     done(err, user);
   });
 });
@@ -116,7 +116,7 @@ function latestServers(req, res, next){
     }, [])
   })
   .then(response => {
-    User.update({id: req.user[0].id}, { $set: { servers: response}}, (err, user) => {
+    Users.update({id: req.user[0].id}, { $set: { servers: response}}, (err, user) => {
       next();
     });
   })
@@ -151,9 +151,31 @@ app.get("/dashboard", isAuthenticated, latestServers, (req, res) => {
 })
 
 app.get("/dashboard/:servId", isAuthenticated, (req, res) => {
-  let serverInfo = true;
-  if(serverInfo){
-    res.render('dashboard/dashboard.pug', { userObj: req.user[0], servers: req.user[0].servers, selectedServ: serverInfo})
+
+  let selectedServ = req.user[0].servers.reduce((accu,el,indx) => {
+    if(el.id === req.params.servId){
+      accu = el
+    }
+    return accu
+  }, null)
+  if(selectedServ){
+    Servers.findOrCreate({id: selectedServ.id},{
+      icon: selectedServ.icon,
+      name: selectedServ.name,
+      ownerid: req.user[0].id,
+      isOn: false,
+      mods:{}
+    },(err, selecServer) =>{
+      if(!err){
+        res.render("dashboard/dashboard.pug", {userObj: req.user[0], servers: req.user[0].servers, selectedServ: selecServer})
+      }else{
+        console.log(err, " there is an error on /dashboard/id");
+        res.render("home/homeLoggedIn.pug", {userObj: req.user[0]})
+      }
+    })
+  }else{
+    console.log("no selected serv");
+    res.render("home/homeLoggedIn.pug", {userObj: req.user[0]})
   }
 })
 
