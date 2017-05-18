@@ -179,6 +179,49 @@ app.get("/dashboard/:servId", isAuthenticated, (req, res) => {
   }
 })
 
+app.post("/dashboard/:servId/on", isAuthenticated, (req, res) => {
+  let doesHeOwn = req.user[0].servers.reduce((accu, el, indx) => {
+    if(el.id === req.params.servId){
+      accu = true;
+    }
+    return accu;
+  }, false);
+  if(doesHeOwn){
+    Servers.update({id: req.params.servId},{ $set: { isOn: true }}, (err, user) => {
+      if(err){
+        res.sendStatus(401)
+        console.log(err, " there is a problem turning on a server");
+      }else{
+        res.sendStatus(201)
+      }
+    })
+  }else{
+    res.sendStatus(401)
+    console.log(req.user[0].id, " just tried to turn on/off a server without being the owner ")
+  }
+})
+app.post("/dashboard/:servId/off", isAuthenticated, (req, res) => {
+  let doesHeOwn = req.user[0].servers.reduce((accu, el, indx) => {
+    if(el.id === req.params.servId){
+      accu = true;
+    }
+    return accu;
+  }, false);
+  if(doesHeOwn){
+    Servers.update({id: req.params.servId},{ $set: { isOn: false }}, (err, user) => {
+      if(err){
+        res.sendStatus(401)
+        console.log(err, " there is a problem turning on a server");
+      }else{
+        res.sendStatus(201)
+      }
+    })
+  }else{
+    res.sendStatus(401)
+    console.log(req.user[0].id, " just tried to turn on/off a server without being the owner ")
+  }
+})
+
 app.get("/test1", isAuthenticated, (req, res) => {
   res.render('dashboard/noServDash.pug', { userObj: req.user[0]})
 })

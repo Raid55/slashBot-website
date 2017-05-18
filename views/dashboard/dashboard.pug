@@ -37,10 +37,10 @@ block app
         if selectedServ
           if selectedServ.isOn
             button.btn.btn-success.btn-xs.disabled Turn On
-            button.btn.btn-warning.btn-xs Turn Off
+            button.btn.btn-warning.btn-xs.off Turn Off
           else 
-            button.btn.btn-success.btn-xs Turn On
-            button.btn.btn-warning.btn-xs.disabled  Turn Off
+            button.btn.btn-success.btn-xs.on Turn On
+            button.btn.btn-warning.btn-xs.disabled Turn Off
         else
           button.btn.btn-success.btn-xs.disabled Turn On
           button.btn.btn-warning.btn-xs.disabled Turn Off
@@ -48,17 +48,29 @@ block app
       .pillHolder(style="border-radius: 4px;")
         ul.nav.nav-pills.nav-stacked
           li.active
-            a(href='#lol' data-toggle="pill") lol
+            a(href='#ctrlPannel' data-toggle="pill")
+              i.fa.fa-cogs
+              span Control Pannel
           li
-            a(href='#test' data-toggle="pill") a piece of toast
+            a(href='#music' data-toggle="pill")
+              i.fa.fa-music
+              span Music Mod
       .contentHolder(style="border-radius: 4px;")
         .tab-content(style="height: 100%;")
-          #lol.tab-pane.fade.in.active(style="height: 100%;")
+          #ctrlPannel.tab-pane.fade.in.active(style="height: 100%;")
             .tabTitle Music
-            .tabForm form
+            .tabForm.music
+              .musicSettings light
+              .musicHistory lol
             .tabAction
               .btn-group.buttonsSaveOrNot(role="group")
                 button.btn.btn-warning.btn-xs(style="margin: 4px; border-radius: 3px;") Cancel
                 button.btn.btn-success.btn-xs(style="margin: 4px; border-radius: 3px;") Save Changes
-          #test.tab-pane.fade
-            p Me strawberry snickels
+          #music.tab-pane.fade(style="height: 100%;")
+            .tabTitle Music
+            .tabForm
+              
+            .tabAction
+              .btn-group.buttonsSaveOrNot(role="group")
+                button.btn.btn-warning.btn-xs(style="margin: 4px; border-radius: 3px;") Cancel
+                button.btn.btn-success.btn-xs(style="margin: 4px; border-radius: 3px;") Save Changes
