@@ -3,7 +3,7 @@ extends ../root/appWindow.pug
 block navbar
   - var user = userObj
 block app
-  .dashboard-container
+  #dashboard-container
     .jumbotron.dashJumba(style="border-radius: 0;")
       if selectedServ
         img.img-responsive.img-rounded.serverImage(src=selectedServ.icon alt="whatislife?")
