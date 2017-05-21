@@ -9,7 +9,8 @@ const serverSchema = new Schema({
   name: String,
   ownerid: String,
   isOn: Boolean,
-  mods:{}
+  mods:[],
+  logs: []
 })
 
 serverSchema.plugin(findOrCreate);

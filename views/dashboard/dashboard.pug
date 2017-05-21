@@ -59,7 +59,7 @@ block app
         .tab-content(style="height: 100%;")
           #ctrlPannel.tab-pane.fade.in.active(style="height: 100%;")
             .tabTitle Music
-            .tabForm.music
+            .tabForm
               .musicSettings light
               .musicHistory lol
             .tabAction
@@ -68,8 +68,9 @@ block app
                 button.btn.btn-success.btn-xs(style="margin: 4px; border-radius: 3px;") Save Changes
           #music.tab-pane.fade(style="height: 100%;")
             .tabTitle Music
-            .tabForm
-              
+            .tabForm.music
+              .musicSettings light
+              .musicHistory lol
             .tabAction
               .btn-group.buttonsSaveOrNot(role="group")
                 button.btn.btn-warning.btn-xs(style="margin: 4px; border-radius: 3px;") Cancel
