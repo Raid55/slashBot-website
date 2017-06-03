@@ -1,0 +1,98 @@
+extends ../root/appWindow.pug
+
+block navbar
+  - var user = userObj
+block app
+  .dashboard-container
+    .jumbotron.jumba
+      img()
+      h2(bold and stuff)
+    .toolbar
+      select.form-control.selectForm
+        each server in servers
+          option #{server.name}
+      button.btn.btn-warning.btn-group-xsmall
+        span.glyphicon.glyphicon-refresh
+      if selectedServ
+        span.label.label-info No Server Selected
+      else if selectedServ.isOn
+        span.label.label-danger Offline
+      else
+        span.label.label-success Online
+      
+        <Label
+          style={styles.statusTag}
+          bsStyle={!info.selectedServer ? "info" : info.selectedServer.isOn ? "success" : "danger" }>
+          {!info.selectedServer ? "No Server Selected" : info.selectedServer.isOn ? "Online" : "Offline" }
+        </Label>
+        {/* make these buttons reactive too */}
+        <ButtonToolbar style={styles.buttons}>
+          <Button bsStyle="success" bsSize="xsmall" disabled>Turn On</Button>
+          <Button bsStyle="warning" bsSize="xsmall">Turn Off</Button>
+        </ButtonToolbar>
+
+///////////////////////////////////////////
+.dashToolbar
+  .serverSelec
+    select.form-control.selectForm
+      if servers
+        option(value="null" disabled selected) Choose a Server
+        each server in servers
+          if selectedServ
+            if selectedServ.id === server.id
+              option(selected value=server.id) #{server.name}
+            else
+              option(value=server.id) #{server.name}
+          else
+            option(value=server.id) #{server.name}
+      else
+        option(value="null" disabled) You have no Servers
+  if selectedServ
+    if selectedServ.isOn
+      span.label.label-success.statusTag Online
+    else
+      span.label.label-danger.statusTag Offline
+  else
+    span.label.label-info.statusTag No Server Selected
+  .btn-group.buttonsOnOff(role="group")
+    if selectedServ
+      if selectedServ.isOn
+        button.btn.btn-success.btn-xs.disabled Turn On
+        button.btn.btn-warning.btn-xs.off Turn Off
+      else
+        button.btn.btn-success.btn-xs.on Turn On
+        button.btn.btn-warning.btn-xs.disabled Turn Off
+    else
+      button.btn.btn-success.btn-xs.disabled Turn On
+      button.btn.btn-warning.btn-xs.disabled Turn Off
+.dashSettings
+  .pillHolder(style="border-radius: 4px;")
+    ul.nav.nav-pills.nav-stacked
+      li.active
+        a(href='#ctrlPannel' data-toggle="pill")
+          i.fa.fa-cogs
+          span Control Pannel
+      li
+        a(href='#music' data-toggle="pill")
+          i.fa.fa-music
+          span Music Mod
+  .contentHolder(style="border-radius: 4px;")
+    .tab-content(style="height: 100%;")
+      #ctrlPannel.tab-pane.fade.in.active(style="height: 100%;")
+        .tabTitle Music
+        .tabForm
+          .musicSettings light
+          .musicHistory lol
+        .tabAction
+          .btn-group.buttonsSaveOrNot(role="group")
+            button.btn.btn-warning.btn-xs(style="margin: 4px; border-radius: 3px;") Cancel
+            button.btn.btn-success.btn-xs(style="margin: 4px; border-radius: 3px;") Save Changes
+      #music.tab-pane.fade(style="height: 100%;")
+        .tabTitle Music
+        .tabForm.music
+          .musicSettings light
+          .musicHistory lol
+        .tabAction
+          .btn-group.buttonsSaveOrNot(role="group")
+            button.btn.btn-warning.btn-xs(style="margin: 4px; border-radius: 3px;") Cancel
+            button.btn.btn-success.btn-xs(style="margin: 4px; border-radius: 3px;") Save Changes

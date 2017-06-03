@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
+body{
+  overflow: hidden;
+}
+
 /*************
 app container
 *************/
@@ -61,19 +65,40 @@ footer
 #dashboard-container{
   height: 91%;
   border-radius: 0 0 15px 15px;
+  display: flex;
+  flex-direction: row;
 }
 
-.dashJumba{
+#dashJumba{
   background-color: rgb(103, 52, 249);
-  width: 100%;
-  height: 34%;
+  width: 30%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin: 0;
-  padding: 2.1em 0 2.1em 2.1em;
+  padding: 2.1em 0 2.1em 0;
 }
+
+.servList{
+  height: 100%;
+  width: 5%;
+  background-color: rgb(87, 88, 222);
+  overflow-y: scroll;
+}
+
+.servIcon{
+  width: 100%;
+  height: 8%;
+  border: 2px solid rgb(230, 178, 116);
+  background: grey;
+  padding-right: 17px;
+}
+
+
+
+/*div.menuitem { width: 200px; position: relative;  min-height: 28px; display: inline-block; margin-right: 0px; padding: 0px 15px 0px 7px; cursor: pointer;  }*/
 
 .dashToolbar{
   height: 6%;
@@ -121,8 +146,8 @@ footer
 }
 
 .serverImage{
-  height: 128px;
-  width: 128px;
+  height: 212px;
+  width: 212px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 

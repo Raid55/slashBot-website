@@ -4,74 +4,40 @@ block navbar
   - var user = userObj
 block app
   #dashboard-container
-    .jumbotron.dashJumba(style="border-radius: 0;")
+    .servList
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wa
+      .servIcon wat
+      .servIcon wa
+
+
+    .jumbotron#dashJumba(style="border-radius: 0;")
       if selectedServ
         img.img-responsive.img-rounded.serverImage(src=selectedServ.icon alt="whatislife?")
         .well.serverText #{selectedServ.name}
       else
         img.img-responsive.img-rounded.serverImage(src="https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png" alt="whatislife?")
         .well.serverText Please select a Server
-    .dashToolbar
-      .serverSelec
-        select.form-control.selectForm
-          if servers
-            option(value="null" disabled selected) Choose a Server
-            each server in servers
-              if selectedServ
-                if selectedServ.id === server.id
-                  option(selected value=server.id) #{server.name}
-                else
-                  option(value=server.id) #{server.name}
-              else
-                option(value=server.id) #{server.name}
-          else
-            option(value="null" disabled) You have no Servers
-      if selectedServ
-        if selectedServ.isOn
-          span.label.label-success.statusTag Online
-        else
-          span.label.label-danger.statusTag Offline
-      else
-        span.label.label-info.statusTag No Server Selected
-      .btn-group.buttonsOnOff(role="group")
-        if selectedServ
-          if selectedServ.isOn
-            button.btn.btn-success.btn-xs.disabled Turn On
-            button.btn.btn-warning.btn-xs.off Turn Off
-          else 
-            button.btn.btn-success.btn-xs.on Turn On
-            button.btn.btn-warning.btn-xs.disabled Turn Off
-        else
-          button.btn.btn-success.btn-xs.disabled Turn On
-          button.btn.btn-warning.btn-xs.disabled Turn Off
-    .dashSettings
-      .pillHolder(style="border-radius: 4px;")
-        ul.nav.nav-pills.nav-stacked
-          li.active
-            a(href='#ctrlPannel' data-toggle="pill")
-              i.fa.fa-cogs
-              span Control Pannel
-          li
-            a(href='#music' data-toggle="pill")
-              i.fa.fa-music
-              span Music Mod
-      .contentHolder(style="border-radius: 4px;")
-        .tab-content(style="height: 100%;")
-          #ctrlPannel.tab-pane.fade.in.active(style="height: 100%;")
-            .tabTitle Music
-            .tabForm
-              .musicSettings light
-              .musicHistory lol
-            .tabAction
-              .btn-group.buttonsSaveOrNot(role="group")
-                button.btn.btn-warning.btn-xs(style="margin: 4px; border-radius: 3px;") Cancel
-                button.btn.btn-success.btn-xs(style="margin: 4px; border-radius: 3px;") Save Changes
-          #music.tab-pane.fade(style="height: 100%;")
-            .tabTitle Music
-            .tabForm.music
-              .musicSettings light
-              .musicHistory lol
-            .tabAction
-              .btn-group.buttonsSaveOrNot(role="group")
-                button.btn.btn-warning.btn-xs(style="margin: 4px; border-radius: 3px;") Cancel
-                button.btn.btn-success.btn-xs(style="margin: 4px; border-radius: 3px;") Save Changes
+    
