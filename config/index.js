@@ -1,4 +1,6 @@
-require('dotenv').config()
+if(process.env.NODE_ENV !== "devServ"){
+  require('dotenv').config()
+};
 
 module.exports = {
   clientId: process.env.CLIENT_ID,

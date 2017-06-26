@@ -26,7 +26,7 @@ const Users = connection.model('User', userSchema)
 const Servers = connection.model('Servers', serverSchema)
 
 // Serve static assets
-app.use('/files',express.static('public'));
+app.use('/files',express.static(__dirname+'/public'));
 //body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -49,7 +49,7 @@ passport.use(new OAuth2Strategy({
     tokenURL: 'https://discordapp.com/api/oauth2/token',
     clientID: clientId,
     clientSecret: clientSecret,
-    callbackURL: "http://localhost:5555/confirm_login"
+    callbackURL: "http://67.205.140.33:5555/confirm_login"
   },
   (accessToken, refreshToken, profile, cb) => {
     axios.request({
@@ -128,12 +128,8 @@ function latestServers(req, res, next){
 
 // passport.authenticate('oauth2',{scope: ["identify", "guilds"]})
 app.get("/", (req, res) => {
-  if(req.user){
-    res.render("home/homeLoggedOut.pug", {userObj: req.user[0]})
-  }else{
-    res.render("home/homeLoggedOut.pug")
-  }
-})
+  res.render(__dirname+"/views/home.pug", req.user ? {userObj: req.user[0]} : null)
+});
 
 app.get("/login", passport.authenticate('oauth2',{scope: ["identify", "guilds"]}))
 
@@ -143,11 +139,12 @@ app.get('/logout', (req, res) => {
 });
 
 app.get("/confirm_login", passport.authenticate('oauth2', { failureRedirect: '/' }), (req,res) => {
+  console.log("lol???")
   res.redirect("/dashboard")
 })
 
 app.get("/dashboard", isAuthenticated, latestServers, (req, res) => {
-  res.render('dashboard/dashboard.pug', { userObj: req.user[0], servers: req.user[0].servers})
+  res.render(__dirname+'/views/dashboard/dashboard.pug', { userObj: req.user[0], servers: req.user[0].servers})
 })
 
 app.get("/dashboard/:servId", isAuthenticated, (req, res) => {

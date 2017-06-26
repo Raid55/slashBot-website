@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
+
+/*************
+app container
+*************/
+.main-container{
+width: 100%;
+height: 95vh;
+}
+
+.app-container{
+background-color: rgb(87, 45, 155);
+margin: 15px 0 20px 0;
+border-radius: 15px;
+width: 100%;
+height: 100%;
+border:7px solid  rgb(170, 164, 164);
+}
+
+/******
+footer
+******/
+#footer{
+  border-radius: 0 0 8px 8px;
+  background-color: rgb(136, 127, 157);
+  height: 3%;
+  text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  height: 47.5%;
+  width: 89.3%;
+  background-color: rgba(69, 69, 69, 0.55);
+  z-index: 9999999;
+}
+
+.avatarImg{
+  padding: 19.5px 0 19.5px 0;
+}
+
+.avatarImg > img{
+  height: 30px;
+  width: 30px;
+  margin: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.mainNavbar{
+  background-color: rgb(63, 59, 71);
+  border-radius: 8px 8px 0 0;
+  height: 8%;
+  margin: 0;
+}
+
+.dashboard-container{
+  height: 89%;
+  border-radius: 0 0 15px 15px;
+}
+
+.dashJumba{
+  background-color: rgb(103, 52, 249);
+  width: 100%;
+  height: 34%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 2.1em 0 2.1em 2.1em;
+}
+
+.dashToolbar{
+  height: 6%;
+  background-color: #2c3e50;
+  padding: 3.4px 2.1em 3.4px 2.1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.serverSelec{
+  display: flex;
+  flex-direction: row;
+}
+
+.selectForm{
+  height: 100%;
+  width: 100%;
+  background-color: rgb(133, 133, 133);
+  border: solid rgb(133, 133, 133);
+  align-self: flex-start;
+}
+
+.statusTag{
+  text-align: center;
+  align-self: center;
+  padding: .9em .6em .9em .6em;
+  margin-right: 8.4em;
+}
+
+.buttonsOnOff > .{
+  text-align: center;
+  align-self: center;
+}
+.buttonsOnOff{
+  display: flex;
+  flex-direction: row;
+}
+
+.serverImage{
+  height: 128px;
+  width: 128px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.serverText{
+  background-color: rgba(33, 185, 143, 0.73);
+  font-weight: bolder;
+  font-size: 2.4em;
+  color: rgb(187, 75, 75);
+  min-height: auto;
+  padding: 0 6px 0 6px;
+  margin: 10px;
+  font-family: 'Space Mono', monospace;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dashSettings{
+  display: flex;
+  height: 60%;
+  padding: 9px 2.1em 9px 2.1em;
+  border-radius: 0;
+}
+
+.pillHolder{
+  border: 3px solid rgba(33, 185, 143, 0.73);
+  background-color: rgba(68, 48, 163, 0.92);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 24.7%;
+}
+
+.pillHolder > ul > li{
+  border-radius: 0 ;
+  margin-top: 0;
+}
+
+.pillHolder > ul > li > a{
+  font-weight: 500;
+  font-size: 1.2em
+}
+
+.pillHolder > ul > li > a:hover {
+  background-color: rgba(215, 215, 215, 0.65);
+  color: rgb(71, 71, 71);
+  font-weight: bolder;
+  font-size: 1.3em;
+}
+.pillHolder > ul > li > a > span {
+  margin: 0 0 0 5px
+}
+
+.contentHolder{
+  border: 3px solid rgba(33, 185, 143, 0.73);
+  background-color: rgba(68, 48, 163, 0.92);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 74.3%;
+  margin: 0 0 0 2%;
+  border-radius: 0;
+}
+
+.tabTitle{
+  display: flex;
+  justify-content: flex-start;
+  height: 10%;
+  width: auto;
+  border-radius: 4px 4px 0 0;
+  background-color: rgb(118, 68, 173);
+}
+.tabTitle > .{
+
+}
+.tabForm{
+  height: 81%;
+  width: auto;
+  background-color: rgb(223, 223, 223);
+}
+
+.music{
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+}
+.musicSettings{
+  display: flex;
+  flex-direction: row;
+  width: 69%;
+  height: 100%;
+  background-color: rgb(255, 0, 237);
+}
+.musicHistory{
+  margin: 0 0 0 2%;
+  display: flex;
+  flex-direction: row;
+  width: 28%;
+  height: 100%;
+  background-color: rgb(255, 253, 204);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.tabAction{
+  display: flex;
+  justify-content: flex-end;
+  height: 9%;
+  width: auto;
+  border-radius: 0 0 2px 2px;
+  background-color: rgb(164, 164, 164);
+}
+
+.buttonsSaveOrNot> . {
+  text-align: center;
+  align-self: center;
+}
+.buttonsSaveOrNot{
+  display: flex;
+  flex-direction: row;
+}
+
+/*export default {
+  container:{
+    height: "89%",
+    borderRadius: "0 0 15px 15px"
+  },
+  toolBar:{
+    height: "5.5%",
+    backgroundColor: "#2c3e50",
+    padding: "3.4px 2.1em 5px 2.1em",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  serverSelec:{
+    display: "flex",
+    flexDirection: "row"
+  },
+  formControlSize:{
+    height: "100%",
+    width: "26.9em",
+    backgroundColor: "rgb(133, 133, 133)",
+    border:"solid rgb(133, 133, 133)",
+    alignSelf: "flex-start"
+  },
+  statusTag:{
+    textAlign: "center",
+    alignSelf: "center",
+    padding: ".5em .2em .5em .2em"
+  },
+  buttons:{
+    alignSelf: "flex-end"
+  },
+  servPic:{
+    width: "31%",
+    border: "6px solid rgb(122, 122, 122)",
+    alignSelf: "flex-start"
+  },
+  serverName:{
+    alignSelf: "center",
+    padding: "0.4em",
+    fontWeight: "700",
+    color: "rgb(125, 10, 204)",
+    fontSize: "24px",
+
+  },
+  mainWell:{
+    display: "flex",
+    alignItems: "center",
+    width: "40%",
+    margin: "0",
+    padding: "12px",
+    background: "rgba(255, 255, 255, 0.22)",
+    border: "5px solid rgba(249, 249, 249, 0.8)"
+  },
+  offlineWell:{
+    display: "flex",
+    alignItems: "center",
+    width: "40%",
+    margin: "0",
+    padding: "12px",
+    background: "rgba(15, 15, 15, 0.4)",
+    border: "5px solid rgba(139, 139, 139, 0.8)"
+  },
+  infoWells:{
+    width: "60%",
+    margin: "0",
+    padding: "12px",
+    backgroundColor: "#1e3b57",
+    color: "rgb(143, 143, 143)"
+
+  },
+  statusServ:{
+    online:{
+      color: "rgb(80, 171, 0)",
+      fontWeight: "800"
+    },
+    ofline:{
+
+    }
+  }
+}*/
