@@ -1,45 +1,11 @@
 extends head.pug
 
-block head
+block body
   body
-    .container-fluid
-      .row
-        .col-lg-1
-        .col-lg-10
-          .main-container
-            .app-container
-              block navbar
-                
-              nav.navbar.navbar-inverse.mainNavbar
-                .container-fluid
-                  .navbar-header
-                    slashBot
-                  .navbar-collapse.collapse
-                    ul.nav.navbar-nav
-                      li
-                       a(href="/about") About
-                      li
-                        a(href="/donate") Donate
-                      li
-                        a(href="/support") Support
-                      li 
-                        a(href="/ideas") Ideas
-                    ul.nav.navbar-nav.navbar-right
-                      if user
-                        li.dropdown
-                          a.dropdown-toggle.avatarImg(href="#" data-toggle="dropdown" role="button" style="padding: 10.5px 0 8px 0;")
-                            img.img-rounded(src=user.avatar) 
-                            span #{user.username}
-                            span.caret
-                          ul.dropdown-menu(role='menu')
-                            li
-                              a(href="/dashboard") Dashboard
-                            li
-                              a(href="/logout") Logout
-                      else
-                        li
-                          a(href="/login") Login With Discord
-              block app
-              include footer.pug
-        .col-lg-1
+    .container-fluid.main-container(style="background-color:tomato;height: 100vh;padding:0;")
+      block navbar
+      include navbar.pug
+      .test(style="background-color: white;top-margin: 20vh;height:80vh;")
+        block app
+        include footer.pug
   include scripts.pug
