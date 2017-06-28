@@ -1,0 +1,31 @@
+extends ./root/appWindow.pug
+
+block navbar
+  - var user = userObj
+block app
+  if selecServer
+    h1.selectTitle
+    #server-select
+      .selectServPic
+      .selectServPic
+      .selectServPic
+      .selectServPic
+      .selectServPic
+      .selectServPic
+  else
+    #server-details
+      .detailsPic
+      .panel#control-panel
+        .panel-heading
+          Control Panel
+          .btn on
+        .panel-body whatever
+  if selecServer
+    #server-settings
+      .row
+        .col-lg-1
+        .col-lg-10
+
+        .col-lg-1
+  else
+    #server-settings.hidden

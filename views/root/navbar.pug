@@ -1,29 +1,28 @@
-nav.navbar.navbar-inverse.mainNavbar(style="background-color:none;")
-  .container-fluid
-    .navbar-header
-      slashBot
-    .navbar-collapse.collapse
-      ul.nav.navbar-nav
+nav.navbar.navbar-inverse.mainNavbar(style="background-color:transparent;")
+  .navbar-header
+    slashBot
+  .navbar-collapse.collapse
+    ul.nav.navbar-nav
+      li
+        a(href="/about") About
+      li
+        a(href="/donate") Donate
+      li
+        a(href="/support") Support
+      li 
+        a(href="/ideas") Ideas
+    ul.nav.navbar-nav.navbar-right
+      if user
+        li.dropdown
+          a.dropdown-toggle.avatarImg(href="#" data-toggle="dropdown" role="button" style="padding: 10.5px 0 8px 0;")
+            img.img-rounded(src=user.avatar) 
+            span #{user.username}
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li
+              a(href="/dashboard") Dashboard
+            li
+              a(href="/logout") Logout
+      else
         li
-          a(href="/about") About
-        li
-          a(href="/donate") Donate
-        li
-          a(href="/support") Support
-        li 
-          a(href="/ideas") Ideas
-      ul.nav.navbar-nav.navbar-right
-        if user
-          li.dropdown
-            a.dropdown-toggle.avatarImg(href="#" data-toggle="dropdown" role="button" style="padding: 10.5px 0 8px 0;")
-              img.img-rounded(src=user.avatar) 
-              span #{user.username}
-              span.caret
-            ul.dropdown-menu(role='menu')
-              li
-                a(href="/dashboard") Dashboard
-              li
-                a(href="/logout") Logout
-        else
-          li
-            a(href="/login") Login With Discord
+          a(href="/login") Login With Discord

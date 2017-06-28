@@ -27,9 +27,11 @@ const Servers = connection.model('Servers', serverSchema)
 
 // Serve static assets
 app.use('/files',express.static(__dirname+'/public'));
+
 //body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 //session
 app.use(session({
   secret: sessionSecret,
@@ -37,9 +39,11 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: connection })
 }));
+
 //passport init and session
 app.use(passport.initialize());
 app.use(passport.session());
+
 //View Engine...aka PUG
 app.set('view engine', 'pug')
 
@@ -144,7 +148,7 @@ app.get("/confirm_login", passport.authenticate('oauth2', { failureRedirect: '/'
 })
 
 app.get("/dashboard", isAuthenticated, latestServers, (req, res) => {
-  res.render(__dirname+'/views/dashboard/dashboard.pug', { userObj: req.user[0], servers: req.user[0].servers})
+  res.render(__dirname+'/views/dashboard.pug', { userObj: req.user[0], servers: req.user[0].servers})
 })
 
 app.get("/dashboard/:servId", isAuthenticated, (req, res) => {
@@ -164,7 +168,7 @@ app.get("/dashboard/:servId", isAuthenticated, (req, res) => {
       mods:{}
     },(err, selecServer) =>{
       if(!err){
-        res.render("dashboard/dashboard.pug", {userObj: req.user[0], servers: req.user[0].servers, selectedServ: selecServer})
+        res.render(__dirname+'/views/dashboard.pug', {userObj: req.user[0], servers: req.user[0].servers, selectedServ: selecServer})
       }else{
         console.log(err, " there is an error on /dashboard/id");
         res.render("home/homeLoggedIn.pug", {userObj: req.user[0]})

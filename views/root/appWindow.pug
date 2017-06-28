@@ -2,10 +2,11 @@ extends head.pug
 
 block body
   body
-    .container-fluid.main-container(style="background-color:tomato;height: 100vh;padding:0;")
-      block navbar
-      include navbar.pug
-      .test(style="background-color: white;top-margin: 20vh;height:80vh;")
+    .main-container(style="background-color:tomato;height: 100vh;padding:0;position: fixed;top:0;bottom:0;right:0;left:0;")
+      .container
+        block navbar
+        include navbar.pug
         block app
         include footer.pug
+    block appSettings
   include scripts.pug
