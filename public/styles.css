@@ -19,3 +19,36 @@
   margin: 0;
 }
 
+/* Dashboard styles */
+#server-details{
+  display: flex;
+}
+#server-select{
+  
+}
+#server-select{
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  background-color: rgb(204, 204, 204);
+}
+/*img stuff*/
+.detailsPic{
+
+}
+.selectServPic{
+
+}
+
+#server-settings{
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  background-color: white;
+}
+
+.hidden{
+  background-color: grey ;
+}

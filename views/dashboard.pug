@@ -4,28 +4,32 @@ block navbar
   - var user = userObj
 block app
   if selecServer
-    h1.selectTitle
-    #server-select
-      .selectServPic
-      .selectServPic
-      .selectServPic
-      .selectServPic
-      .selectServPic
-      .selectServPic
-  else
+    .container
     #server-details
-      .detailsPic
-      .panel#control-panel
+      img.detailsPic(src="https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png" alt="whatislife?")
+
+      .panel.panel-info
         .panel-heading
           Control Panel
           .btn on
-        .panel-body whatever
-  if selecServer
-    #server-settings
-      .row
-        .col-lg-1
-        .col-lg-10
-
-        .col-lg-1
+        .panel-body whatever is like whatever dude that can do that thing that watever bro filler text will be filler text and nothing is gonna happen because the world spins around a sun that itself spins around in a gala ok ima stop..
   else
-    #server-settings.hidden
+    h1.selectTitle
+    #server-select
+      img.selectServPic(src="https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png" alt="whatislife?")
+      img.selectServPic(src="https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png" alt="whatislife?")
+      img.selectServPic(src="https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png" alt="whatislife?")
+      img.selectServPic(src="https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png" alt="whatislife?")
+      img.selectServPic(src="https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png" alt="whatislife?")
+      img.selectServPic(src="https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png" alt="whatislife?")
+
+  if selecServer
+    #server-settings lol
+      .container
+        .row
+          .col-lg-1
+          .col-lg-10
+
+          .col-lg-1
+  else 
+    #server-settings.hidden stuff

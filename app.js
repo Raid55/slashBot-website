@@ -130,11 +130,16 @@ function latestServers(req, res, next){
   });
 }
 
-// passport.authenticate('oauth2',{scope: ["identify", "guilds"]})
+//Home
 app.get("/", (req, res) => {
   res.render(__dirname+"/views/home.pug", req.user ? {userObj: req.user[0]} : null)
 });
 
+//Dashboard
+const dashboardRouter = require('./routes/dashboard.js')
+app.use('/dashboard', dashboardRouter)
+
+//Discord Login (redirects to /dashboard on login)
 app.get("/login", passport.authenticate('oauth2',{scope: ["identify", "guilds"]}))
 
 app.get('/logout', (req, res) => {
@@ -147,39 +152,9 @@ app.get("/confirm_login", passport.authenticate('oauth2', { failureRedirect: '/'
   res.redirect("/dashboard")
 })
 
-app.get("/dashboard", isAuthenticated, latestServers, (req, res) => {
-  res.render(__dirname+'/views/dashboard.pug', { userObj: req.user[0], servers: req.user[0].servers})
-})
-
-app.get("/dashboard/:servId", isAuthenticated, (req, res) => {
-
-  let selectedServ = req.user[0].servers.reduce((accu,el,indx) => {
-    if(el.id === req.params.servId){
-      accu = el
-    }
-    return accu
-  }, null)
-  if(selectedServ){
-    Servers.findOrCreate({id: selectedServ.id},{
-      icon: selectedServ.icon,
-      name: selectedServ.name,
-      ownerid: req.user[0].id,
-      isOn: false,
-      mods:{}
-    },(err, selecServer) =>{
-      if(!err){
-        res.render(__dirname+'/views/dashboard.pug', {userObj: req.user[0], servers: req.user[0].servers, selectedServ: selecServer})
-      }else{
-        console.log(err, " there is an error on /dashboard/id");
-        res.render("home/homeLoggedIn.pug", {userObj: req.user[0]})
-      }
-    })
-  }else{
-    console.log("no selected serv");
-    res.render("home/homeLoggedIn.pug", {userObj: req.user[0]})
-  }
-})
-
+//API
+//Here what I decided to do is make an API that abstracts my mongodb and sends all info to redis cache on the bot
+//this is gonna be cool, the endpoint will be /api naturaly, or maybe get fancy and choose something like /dataHole lolololoollollooloolololol
 app.post("/dashboard/:servId/on", isAuthenticated, (req, res) => {
   let doesHeOwn = req.user[0].servers.reduce((accu, el, indx) => {
     if(el.id === req.params.servId){
@@ -201,6 +176,7 @@ app.post("/dashboard/:servId/on", isAuthenticated, (req, res) => {
     console.log(req.user[0].id, " just tried to turn on/off a server without being the owner ")
   }
 })
+
 app.post("/dashboard/:servId/off", isAuthenticated, (req, res) => {
   let doesHeOwn = req.user[0].servers.reduce((accu, el, indx) => {
     if(el.id === req.params.servId){
@@ -223,6 +199,7 @@ app.post("/dashboard/:servId/off", isAuthenticated, (req, res) => {
   }
 })
 
+//TEST
 app.get("/test1", isAuthenticated, (req, res) => {
   res.render('dashboard/noServDash.pug', { userObj: req.user[0]})
 })
@@ -239,6 +216,10 @@ app.get("/test3", (req, res) => {
 app.get("/test4", (req, res) => {
   res.json(req.user)
 })
+
+// passport.authenticate('oauth2',{scope: ["identify", "guilds"]})
+
+
 // app
 //   .get("/api/servers", (req, res) => {
 //

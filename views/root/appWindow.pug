@@ -5,8 +5,6 @@ block body
     .main-container(style="background-color:tomato;height: 100vh;padding:0;position: fixed;top:0;bottom:0;right:0;left:0;")
       .container
         block navbar
-        include navbar.pug
-        block app
-        include footer.pug
-    block appSettings
-  include scripts.pug
+        include navbar.pug  
+      block app
+    include scripts.pug
